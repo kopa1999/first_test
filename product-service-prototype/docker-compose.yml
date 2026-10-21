@@ -1,0 +1,270 @@
+x-otel-env: &otel-env
+
+  JAVA_TOOL_OPTIONS: "-javaagent:/otel/opentelemetry-javaagent.jar"
+  
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+  OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+  OTEL_TRACES_EXPORTER: otlp
+  OTEL_METRICS_EXPORTER: none
+  OTEL_LOGS_EXPORTER: none
+
+x-otel-volumes: &otel-volumes
+  - ./observability/javaagent/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar:ro
+
+
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: masterarbeit-postgres
+
+    environment:
+      POSTGRES_USER: product_user
+      POSTGRES_PASSWORD: product_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U product_user -d productdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: masterarbeit-pgadmin
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+    ports:
+      - "5050:80"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+  user-service:
+    build:
+      context: ./user-service
+
+    container_name: user-service
+
+    environment:
+      <<: *otel-env
+
+      OTEL_SERVICE_NAME: user-service
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/userdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+    volumes: *otel-volumes
+
+    ports:
+      - "8081:8081"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      otel-collector:
+        condition: service_started
+
+
+  product-service:
+    build:
+      context: ./product-service
+
+    container_name: product-service
+
+    environment:
+      <<: *otel-env
+
+      OTEL_SERVICE_NAME: product-service
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/productdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+      PRODUCT_LOCK_HOLD_MS: 0
+
+    volumes: *otel-volumes
+
+    ports:
+      - "8082:8082"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      otel-collector:
+        condition: service_started
+
+
+  shopping-service:
+    build:
+      context: ./shopping-service
+
+    container_name: shopping-service
+
+    environment:
+      <<: *otel-env
+
+      OTEL_SERVICE_NAME: shopping-service
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/shoppingdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+      SERVICES_USER_URL: http://user-service:8081
+      SERVICES_PRODUCT_URL: http://product-service:8082
+
+    volumes: *otel-volumes
+
+    ports:
+      - "8083:8083"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      user-service:
+        condition: service_started
+      product-service:
+        condition: service_started
+      otel-collector:
+        condition: service_started
+
+
+  payment-service:
+    build:
+      context: ./payment-service
+
+    container_name: payment-service
+
+    environment:
+      <<: *otel-env
+
+      OTEL_SERVICE_NAME: payment-service
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/paymentdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+      PAYMENT_DELAY_MS: 0
+      PAYMENT_FORCE_FAILURE: "false"
+
+    volumes: *otel-volumes
+
+    ports:
+      - "8084:8084"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      otel-collector:
+        condition: service_started
+
+
+  order-service:
+    build:
+      context: ./order-service
+
+    container_name: order-service
+
+    environment:
+      <<: *otel-env
+
+      OTEL_SERVICE_NAME: order-service
+
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/orderdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+      SERVICES_USER_URL: http://user-service:8081
+      SERVICES_PRODUCT_URL: http://product-service:8082
+      SERVICES_SHOPPING_URL: http://shopping-service:8083
+      SERVICES_PAYMENT_URL: http://payment-service:8084
+
+    volumes: *otel-volumes
+
+    ports:
+      - "8085:8085"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      user-service:
+        condition: service_started
+      product-service:
+        condition: service_started
+      shopping-service:
+        condition: service_started
+      payment-service:
+        condition: service_started
+      otel-collector:
+        condition: service_started
+
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.161.0
+    container_name: otel-collector
+
+    command:
+      - "--config=/etc/otelcol/config.yaml"
+
+    volumes:
+      - ./observability/otel-collector-config.yaml:/etc/otelcol/config.yaml:ro
+
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+
+    depends_on:
+      - tempo
+
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+
+    command:
+      - "-config.file=/etc/tempo.yaml"
+
+    volumes:
+      - ./observability/tempo.yaml:/etc/tempo.yaml:ro
+      - tempo_data:/var/tempo
+
+    ports:
+      - "3200:3200"
+
+
+  grafana:
+    image: grafana/grafana:12.1
+    container_name: grafana
+
+    environment:
+      GF_SERVER_PROTOCOL: http
+      GF_SERVER_HTTP_ADDR: 0.0.0.0
+      GF_SERVER_HTTP_PORT: 3000
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - tempo
+
+
+volumes:
+  postgres_data:
+  tempo_data:

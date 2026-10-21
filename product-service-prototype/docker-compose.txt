@@ -1,0 +1,221 @@
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: masterarbeit-postgres
+
+    environment:
+      POSTGRES_USER: product_user
+      POSTGRES_PASSWORD: product_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U product_user -d productdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: masterarbeit-pgadmin
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+
+    ports:
+      - "5050:80"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+  user-service:
+    build:
+      context: ./user-service
+
+    container_name: user-service
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/userdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+    ports:
+      - "8081:8081"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+  product-service:
+    build:
+      context: ./product-service
+
+    container_name: product-service
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/productdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+    ports:
+      - "8082:8082"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+  shopping-service:
+    build:
+      context: ./shopping-service
+
+    container_name: shopping-service
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/shoppingdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+      SERVICES_USER_URL: http://user-service:8081
+      SERVICES_PRODUCT_URL: http://product-service:8082
+
+    ports:
+      - "8083:8083"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      user-service:
+        condition: service_started
+      product-service:
+        condition: service_started
+
+
+  payment-service:
+    build:
+      context: ./payment-service
+
+    container_name: payment-service
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/paymentdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+    ports:
+      - "8084:8084"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+  order-service:
+    build:
+      context: ./order-service
+
+    container_name: order-service
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/orderdb
+      SPRING_DATASOURCE_USERNAME: product_user
+      SPRING_DATASOURCE_PASSWORD: product_password
+
+      SERVICES_USER_URL: http://user-service:8081
+      SERVICES_PRODUCT_URL: http://product-service:8082
+      SERVICES_SHOPPING_URL: http://shopping-service:8083
+      SERVICES_PAYMENT_URL: http://payment-service:8084
+      
+      JAVA_TOOL_OPTIONS: "-javaagent:/otel/opentelemetry-javaagent.jar"
+
+      OTEL_SERVICE_NAME: order-service
+
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_EXPORTER_OTLP_PROTOCOL: http/protobuf
+
+      OTEL_TRACES_EXPORTER: otlp
+      OTEL_METRICS_EXPORTER: none
+      OTEL_LOGS_EXPORTER: none
+
+    ports:
+      - "8085:8085"
+      
+    volumes:
+      - ./observability/javaagent/opentelemetry-javaagent.jar:/otel/opentelemetry-javaagent.jar:ro
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      user-service:
+        condition: service_started
+      product-service:
+        condition: service_started
+      shopping-service:
+        condition: service_started
+      payment-service:
+        condition: service_started
+      otel-collector:
+        condition: service_started
+
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.161.0
+    container_name: otel-collector
+
+    command:
+      - "--config=/etc/otelcol/config.yaml"
+
+    volumes:
+      - ./observability/otel-collector-config.yaml:/etc/otelcol/config.yaml
+
+    ports:
+      - "4317:4317"
+      - "4318:4318"
+
+    depends_on:
+      - tempo
+
+
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+
+    command:
+      - "-config.file=/etc/tempo.yaml"
+
+    volumes:
+      - ./observability/tempo.yaml:/etc/tempo.yaml
+      - tempo_data:/var/tempo
+
+    ports:
+      - "3200:3200"
+
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning
+
+    ports:
+      - "3000:3000"
+
+    depends_on:
+      - tempo
+
+
+volumes:
+  postgres_data:
+  tempo_data:

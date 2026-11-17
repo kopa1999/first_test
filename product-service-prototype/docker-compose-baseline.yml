@@ -1,0 +1,21 @@
+services:
+
+  user-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  product-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  shopping-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  payment-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  order-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""

@@ -1,0 +1,356 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: /scripts/s1-perf.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 100 max VUs, 1m30s max duration (incl. graceful stop):
+              * s1_normal: 10.00 iterations/s for 1m0s (maxVUs: 20-100, gracefulStop: 30s)
+
+
+running (0m00.6s), 006/020 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [   1% ] 006/020 VUs  0m00.6s/1m0s  10.00 iters/s
+
+running (0m01.6s), 016/020 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [   3% ] 016/020 VUs  0m01.6s/1m0s  10.00 iters/s
+
+running (0m02.6s), 023/023 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [   4% ] 023/023 VUs  0m02.6s/1m0s  10.00 iters/s
+
+running (0m03.6s), 028/028 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [   6% ] 028/028 VUs  0m03.6s/1m0s  10.00 iters/s
+
+running (0m04.6s), 033/033 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [   8% ] 033/033 VUs  0m04.6s/1m0s  10.00 iters/s
+
+running (0m05.6s), 038/038 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [   9% ] 038/038 VUs  0m05.6s/1m0s  10.00 iters/s
+
+running (0m06.6s), 043/043 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  11% ] 043/043 VUs  0m06.6s/1m0s  10.00 iters/s
+
+running (0m07.6s), 048/048 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  13% ] 048/048 VUs  0m07.6s/1m0s  10.00 iters/s
+
+running (0m08.6s), 053/053 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  14% ] 053/053 VUs  0m08.6s/1m0s  10.00 iters/s
+
+running (0m09.6s), 058/058 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  16% ] 058/058 VUs  0m09.6s/1m0s  10.00 iters/s
+
+running (0m10.6s), 063/063 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  18% ] 063/063 VUs  0m10.6s/1m0s  10.00 iters/s
+
+running (0m11.6s), 068/068 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  19% ] 068/068 VUs  0m11.6s/1m0s  10.00 iters/s
+
+running (0m12.6s), 073/073 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  21% ] 073/073 VUs  0m12.6s/1m0s  10.00 iters/s
+
+running (0m13.6s), 078/078 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  23% ] 078/078 VUs  0m13.6s/1m0s  10.00 iters/s
+
+running (0m14.6s), 083/083 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  24% ] 083/083 VUs  0m14.6s/1m0s  10.00 iters/s
+
+running (0m15.6s), 088/088 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  26% ] 088/088 VUs  0m15.6s/1m0s  10.00 iters/s
+
+running (0m16.6s), 093/093 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  28% ] 093/093 VUs  0m16.6s/1m0s  10.00 iters/s
+
+running (0m17.6s), 098/098 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  29% ] 098/098 VUs  0m17.6s/1m0s  10.00 iters/s
+time="2026-11-17T00:43:07Z" level=warning msg="Insufficient VUs, reached 100 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=s1_normal
+
+running (0m18.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  31% ] 100/100 VUs  0m18.6s/1m0s  10.00 iters/s
+
+running (0m19.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  33% ] 100/100 VUs  0m19.6s/1m0s  10.00 iters/s
+
+running (0m20.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  34% ] 100/100 VUs  0m20.6s/1m0s  10.00 iters/s
+
+running (0m21.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  36% ] 100/100 VUs  0m21.6s/1m0s  10.00 iters/s
+
+running (0m22.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  38% ] 100/100 VUs  0m22.6s/1m0s  10.00 iters/s
+
+running (0m23.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  39% ] 100/100 VUs  0m23.6s/1m0s  10.00 iters/s
+
+running (0m24.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  41% ] 100/100 VUs  0m24.6s/1m0s  10.00 iters/s
+
+running (0m25.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  43% ] 100/100 VUs  0m25.6s/1m0s  10.00 iters/s
+
+running (0m26.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  44% ] 100/100 VUs  0m26.6s/1m0s  10.00 iters/s
+
+running (0m27.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  46% ] 100/100 VUs  0m27.6s/1m0s  10.00 iters/s
+
+running (0m28.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  48% ] 100/100 VUs  0m28.6s/1m0s  10.00 iters/s
+
+running (0m29.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  49% ] 100/100 VUs  0m29.6s/1m0s  10.00 iters/s
+
+running (0m30.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  51% ] 100/100 VUs  0m30.6s/1m0s  10.00 iters/s
+
+running (0m31.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  53% ] 100/100 VUs  0m31.6s/1m0s  10.00 iters/s
+
+running (0m32.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  54% ] 100/100 VUs  0m32.6s/1m0s  10.00 iters/s
+
+running (0m33.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  56% ] 100/100 VUs  0m33.6s/1m0s  10.00 iters/s
+
+running (0m34.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  58% ] 100/100 VUs  0m34.6s/1m0s  10.00 iters/s
+
+running (0m35.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  59% ] 100/100 VUs  0m35.6s/1m0s  10.00 iters/s
+
+running (0m36.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  61% ] 100/100 VUs  0m36.6s/1m0s  10.00 iters/s
+
+running (0m37.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  63% ] 100/100 VUs  0m37.6s/1m0s  10.00 iters/s
+
+running (0m38.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  64% ] 100/100 VUs  0m38.6s/1m0s  10.00 iters/s
+
+running (0m39.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  66% ] 100/100 VUs  0m39.6s/1m0s  10.00 iters/s
+
+running (0m40.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  68% ] 100/100 VUs  0m40.6s/1m0s  10.00 iters/s
+
+running (0m41.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  69% ] 100/100 VUs  0m41.6s/1m0s  10.00 iters/s
+
+running (0m42.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  71% ] 100/100 VUs  0m42.6s/1m0s  10.00 iters/s
+
+running (0m43.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  73% ] 100/100 VUs  0m43.6s/1m0s  10.00 iters/s
+
+running (0m44.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  74% ] 100/100 VUs  0m44.6s/1m0s  10.00 iters/s
+
+running (0m45.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  76% ] 100/100 VUs  0m45.6s/1m0s  10.00 iters/s
+
+running (0m46.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  78% ] 100/100 VUs  0m46.6s/1m0s  10.00 iters/s
+
+running (0m47.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  79% ] 100/100 VUs  0m47.6s/1m0s  10.00 iters/s
+
+running (0m48.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  81% ] 100/100 VUs  0m48.6s/1m0s  10.00 iters/s
+
+running (0m49.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  83% ] 100/100 VUs  0m49.6s/1m0s  10.00 iters/s
+
+running (0m50.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  84% ] 100/100 VUs  0m50.6s/1m0s  10.00 iters/s
+
+running (0m51.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  86% ] 100/100 VUs  0m51.6s/1m0s  10.00 iters/s
+
+running (0m52.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  88% ] 100/100 VUs  0m52.6s/1m0s  10.00 iters/s
+
+running (0m53.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  89% ] 100/100 VUs  0m53.6s/1m0s  10.00 iters/s
+
+running (0m54.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  91% ] 100/100 VUs  0m54.6s/1m0s  10.00 iters/s
+
+running (0m55.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  93% ] 100/100 VUs  0m55.6s/1m0s  10.00 iters/s
+
+running (0m56.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  94% ] 100/100 VUs  0m56.6s/1m0s  10.00 iters/s
+
+running (0m57.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  96% ] 100/100 VUs  0m57.6s/1m0s  10.00 iters/s
+
+running (0m58.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  98% ] 100/100 VUs  0m58.6s/1m0s  10.00 iters/s
+
+running (0m59.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal   [  99% ] 100/100 VUs  0m59.6s/1m0s  10.00 iters/s
+
+running (1m00.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m01.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m02.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m03.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m04.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m05.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m06.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m07.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m08.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m09.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m10.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m11.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m12.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m13.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m14.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m15.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m16.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+running (1m17.6s), 100/100 VUs, 0 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:07Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:08Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:08Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:08Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m18.6s), 087/100 VUs, 13 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:08Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m19.6s), 086/100 VUs, 14 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:09Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:09Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:10Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m20.6s), 054/100 VUs, 46 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:10Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m21.6s), 034/100 VUs, 66 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:11Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:12Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:12Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:12Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:12Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m22.6s), 019/100 VUs, 81 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:13Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:13Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:13Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+time="2026-11-17T00:44:13Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m23.6s), 011/100 VUs, 89 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+time="2026-11-17T00:44:13Z" level=warning msg="Request Failed" error="Post \"http://order-service:8085/orders\": request timeout"
+
+running (1m24.6s), 001/100 VUs, 99 complete and 0 interrupted iterations
+s1_normal ↓ [ 100% ] 100/100 VUs  1m0s  10.00 iters/s
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 100    1.180502/s
+    checks_succeeded...: 53.00% 53 out of 100
+    checks_failed......: 47.00% 47 out of 100
+
+    ✗ order status 200
+      ↳  53% — ✓ 53 / ✗ 47
+
+    CUSTOM
+    completed_order_flows..........: 53     0.625666/s
+    order_duration.................: avg=58.88s min=54.36s   med=59.77s p(90)=1m0s   p(95)=1m0s   p(99)=1m0s   max=1m0s  
+    order_failed...................: 47.00% 47 out of 100
+
+    HTTP
+    http_req_duration..............: avg=24.24s min=164.55ms med=11.87s p(90)=59.99s p(95)=1m0s   p(99)=1m0s   max=1m0s  
+      { expected_response:true }...: avg=17.59s min=164.55ms med=7.97s  p(90)=58.33s p(95)=59.27s p(99)=59.77s max=59.81s
+    http_req_failed................: 15.66% 47 out of 300
+    http_reqs......................: 300    3.541506/s
+
+    EXECUTION
+    dropped_iterations.............: 501    5.914316/s
+    iteration_duration.............: avg=1m12s  min=1m2s     med=1m12s  p(90)=1m17s  p(95)=1m18s  p(99)=1m19s  max=1m20s 
+    iterations.....................: 100    1.180502/s
+    vus............................: 1      min=1         max=100
+    vus_max........................: 100    min=20        max=100
+
+    NETWORK
+    data_received..................: 55 kB  649 B/s
+    data_sent......................: 47 kB  554 B/s
+
+
+
+
+running (1m24.7s), 000/100 VUs, 100 complete and 0 interrupted iterations
+s1_normal ✓ [ 100% ] 000/100 VUs  1m0s  10.00 iters/s

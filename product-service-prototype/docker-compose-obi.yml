@@ -1,0 +1,46 @@
+services:
+
+  user-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  product-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  shopping-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  payment-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  order-service:
+    environment:
+      JAVA_TOOL_OPTIONS: ""
+
+  obi:
+    image: otel/ebpf-instrument:v0.12.2
+    container_name: obi
+    pid: host
+    privileged: true
+
+    volumes:
+      - /sys/kernel/tracing:/sys/kernel/tracing
+      - /sys/fs/cgroup:/sys/fs/cgroup
+
+    environment:
+      OTEL_EBPF_OPEN_PORT: "8081-8085"
+
+      OTEL_EBPF_AUTO_TARGET_LANGUAGE: "java"
+      OTEL_EBPF_JAVAAGENT_ENABLED: "false"
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: "http://otel-collector:4318/v1/traces"
+      OTEL_EXPORTER_OTLP_TRACES_PROTOCOL: "http/protobuf"
+
+      OTEL_EBPF_BPF_CONTEXT_PROPAGATION: "headers"
+
+      OTEL_EBPF_EXCLUDE_OTEL_INSTRUMENTED_SERVICES: "false"
+
+    depends_on:
+      - otel-collector

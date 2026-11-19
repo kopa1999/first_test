@@ -1,0 +1,4 @@
+services:
+  payment-service:
+    environment:
+      PAYMENT_DELAY_MS: "500"
